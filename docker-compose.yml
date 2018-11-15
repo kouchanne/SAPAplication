@@ -11,8 +11,8 @@ services:
       - "3031:3031"
     environment:
       TZ: "Asia/Tokyo"
-    volumes:
-      - ./backend/python:/var/www/
+    # volumes:
+    #   - ./backend/python:/var/www/
 
   frontend:
     build: ./frontend
@@ -24,8 +24,8 @@ services:
       - "4231:80"
     environment:
       TZ: "Asia/Tokyo"
-    volumes:
-      - ./web/vue/dist:/home/www/contents:ro
+    # volumes:
+    #   - ./web/vue/dist:/home/www/contents:ro
 
   mysql:
     image: mysql:5.7
