@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  backend:
+    build: ./backend
+    image: backend
+    container_name: backend_container
+    links:
+      - mysql
+    ports:
+      - "3031:3031"
+    environment:
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./backend/python:/var/www/
+
+  frontend:
+    build: ./frontend
+    image: frontend
+    container_name: frontend_container
+    links:
+      - backend
+    ports:
+      - "4231:80"
+    environment:
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./web/vue/dist:/home/www/contents:ro
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql_container
+    volumes:
+      - ./mysql/work:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: passwd
