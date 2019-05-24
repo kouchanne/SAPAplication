@@ -15,4 +15,14 @@ steps:
   - 'TZ=Asia/Tokyo'
   dir: './frontend'
 
-images: ['gcr.io/webcrewsample/frontend']
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'build'
+  - '-t'
+  - 'gcr.io/webcrewsample/backend'
+  - '.'
+  env:
+  - 'TZ=Asia/Tokyo'
+  dir: './backend'
+
+images: ['gcr.io/webcrewsample/frontend','gcr.io/webcrewsample/backend']
