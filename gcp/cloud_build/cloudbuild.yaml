@@ -1,0 +1,18 @@
+steps:
+# gitの取得
+- name: 'gcr.io/cloud-builders/git'
+  args:
+  - 'clone'
+  - 'https://github.com/kouchanne/SAPAplication.git'
+
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+  - 'build'
+  - '-t'
+  - 'gcr.io/webcrewsample/frontend'
+  - '.'
+  env:
+  - 'TZ=Asia/Tokyo'
+  dir: './frontend'
+
+images: ['gcr.io/webcrewsample/frontend']
